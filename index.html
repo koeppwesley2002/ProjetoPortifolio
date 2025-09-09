@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devclub / Portfólio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="particulas"></div>
+    <nav class="navegacao">
+        <ul class="menu">
+            <li><a href="#inicio" class="menu-link">Início</a></li>
+            <li><a href="#sobre" class="menu-link">Sobre</a></li>
+            <li><a href="#contatos" class="menu-link">Contato</a></li>
+        </ul>
+    </nav>
+
+    <main id="inicio" class="cabecalho">
+        <img src="./img/wesley.jpg" alt="Foto de Wesley Koepp" class="foto-perfil">
+        <h1>Wesley Koepp</h1>
+        <p class="cabecalho-sub-titulo">Programador Júnior</p>
+    </main>
+
+    <section id="sobre" class="sobre">
+        <h2 class="sobre-titulo">Sobre Mim</h2>
+        <div class="sobre-caixa">
+            <p class="sobre-paragrafo">
+                Olá! Sou Wesley, estudante de Ciência da Computação (6º semestre), com interesse em programação e
+                desenvolvimento de projetos. Meu objetivo é crescer na área de tecnologia, contribuindo para o
+                desenvolvimento da empresa onde atuar e também evoluir na minha carreira como programador.
+            </p>
+        </div>
+    </section>
+
+    <section id="contatos" class="contatos">
+        <h2 class="contatos-titulo">Entre em Contato</h2>
+        <form class="formulario-contato" id="formulario" onsubmit="enviarwhats(event)">
+            <div class="grupo-form">
+                <input placeholder="Nome" class="campo-form" id="Nome">
+            </div>
+            <div class="grupo-form">
+                <textarea class="campo-form" placeholder="Digite sua Mensagem" rows="4" id="Mensagem"></textarea>
+            </div>
+            <button type="submit" class="botao-form">Enviar WhatsApp</button>
+        </form>
+    </section>
+
+    <script>
+        function enviarwhats(event) {
+            event.preventDefault();
+
+            const Nome = document.getElementById('Nome').value.trim();
+            const Mensagem = document.getElementById('Mensagem').value.trim();
+            const telefone = '5555991475508'; // DDI + DDD + número
+
+            if (!Nome || !Mensagem) {
+                alert("Por favor, preencha seu nome e a mensagem.");
+                return;
+            }
+
+            const texto = `Olá! Me chamo ${Nome}. ${Mensagem}`;
+            const msgFormatada = encodeURIComponent(texto);
+
+            const url = `https://wa.me/${telefone}?text=${msgFormatada}`;
+
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
