@@ -15,11 +15,14 @@ html {
     --maisEscuro: #0a0f1c;
     --claro: #e2e8f0;
     --vidro: #100e0e;
+    --nav-height: 72px;
 }
 
 body {
     background-color: var(--escuro);
     color: aliceblue;
+    padding-top: var(--nav-height);
+    padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
 .navegacao {
@@ -28,7 +31,10 @@ body {
     background-color: rgb(30, 24, 24);
     width: 100%;
     z-index: 10;
-    padding: 1.5rem;
+    height: var(--nav-height);
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
 }
 
     .menu {
@@ -175,12 +181,12 @@ body {
         cursor: pointer;
         font-weight: bold;
         width: 100%;
-        transition: all 0.5 ease;
+        transition: all 0.5s ease;
     }
 
     .botao-form:hover {
         transform: translateY(-4px);
-        box-shadow: 0 5px rgba(79, 70, 229, 0.4);
+        box-shadow: 0 5px 15px rgba(79, 70, 229, 0.35);
     }
 
     .particulas {
@@ -208,8 +214,10 @@ body {
     }
 
     @media (max-width: 600px) {
+        :root { --nav-height: 56px; }
         .navegacao {
-            padding: 0.75rem;
+            height: var(--nav-height);
+            padding: 0 0.75rem;
         }
 
         .menu {
@@ -287,3 +295,13 @@ body {
             text-align: center;
         }
     }
+
+/* Ensure content doesn't hide behind device UI (iPhone home indicator, etc.) */
+@supports (padding: env(safe-area-inset-bottom)) {
+    .contatos, .sobre {
+        padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+    }
+    .formulario-contato {
+        margin-bottom: calc(1rem + env(safe-area-inset-bottom));
+    }
+}
